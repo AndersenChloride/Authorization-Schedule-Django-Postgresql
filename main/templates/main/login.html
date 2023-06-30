@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<title> Авторизация NASA</title>
+  <style>
+    body {
+      background-image: url("https://i.gifer.com/BUhB.gif");
+      background-size: cover;
+      background-position: center;
+      font-family: Arial, sans-serif;
+      overflow-y: scroll;
+      margin: 0;
+    }
+
+    .container {
+      display: flex;/**/
+      justify-content: center;/**/
+      align-items: center;/**/
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.75);
+    }
+
+    .content {
+      display: flex;/**/
+      flex-direction: column;
+      justify-content: center;
+      max-width: 400px;
+      padding: 20px;
+      color: #000;
+    }
+
+    .form {
+      margin-bottom: 20px;
+      text-align: center;
+      color:#ffffff;
+      font-family: 'Comic Sans MS';
+    }
+
+
+    .form h2 {
+      margin-bottom: 10px;
+    }
+
+    .form label {
+      display: block;
+      margin-bottom: 10px;
+      text-align: left;
+    }
+    .form button {
+      width: 100%;
+      padding: 10px;
+      background-color: rgba(0, 0, 0, 0.75);
+      border: none;
+      color: #fff;
+      transition: background-color 0.3s ease;
+    }
+    .form button:hover {
+      background-color: indianred;
+    }
+
+    .form input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: none;
+      box-sizing: border-box;
+    }
+
+    .form div#error{
+        color: red;
+    }
+
+    .form a{
+        color: indianred;
+        text-decoration: none;
+    }
+
+    .form input#button {
+      width: 100%;
+      padding: 10px;
+      background-color: rgba(0, 0, 0, 0.75);
+      border: none;
+      color: #fff;
+      transition: background-color 0.3s ease;
+      font-size:large ;
+      font-family: 'Comic Sans MS';
+    }
+
+    .form input#button:hover {
+      background-color: indianred;
+    }
+
+    .fade-in {
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+        animation: fade-in 1s ease-in forwards, slide-up 1s ease-in-out 1s forwards;
+    }
+
+    .fade-in img {
+        display: block;
+        margin: 0 auto;
+    }
+
+    .block1 {
+        animation: slide-up 3s forwards;
+    }
+
+    @keyframes slide-up {
+        0% {
+            transform: translateY(150%);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+  </style>
+</head>
+<body>
+  </form>
+    <div class="container">
+        <div class="content">
+            <div class="fade-in block2">
+                <div class="fade-in block1">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/NASA_Worm_logo.svg/1200px-NASA_Worm_logo.svg.png" width="400" height="111" alt="Письма мастера дзен">
+                </div>
+            </div>
+
+            <div class="fade-in block2">
+                     <form method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    <div class="form">
+
+                         <h2>Login</h2>
+                         {{ form.as_p }}
+                        <button type="submit">Login</button>
+
+
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <script>
+      var login;
+      function submit(){
+        login = document.getElementById("loginUsername").value;
+        window.location.href = 'http://127.0.0.1:8000/stud_schedule';
+        localStorage.setItem("userLogin", login)
+      }
+
+      window.addEventListener("DOMContentLoaded", function() {
+        var divs = document.querySelectorAll(".fade-in");
+
+        function fadeInDivs(index) {
+          if (index < divs.length) {
+            divs[index].style.opacity = "1";
+              setTimeout(function() {
+                fadeInDivs(index + 1)
+                ;}, 1000);
+          }
+        }
+        fadeInDivs(0);
+      });
+    </script>
+</body>
+</html>
